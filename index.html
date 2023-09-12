@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Préstamos Personales</title>
+    <link rel="stylesheet" href="./CSS/stylesheet.css">
+</head>
+<body>
+    <header>
+      
+        <h1>Simulador de Préstamos Personales</h1>
+        <img src="./MULTIMEDIA/img/logo.png" alt="logo"> 
+    </header>
+    <main>
+        <form id="formulario-prestamo">
+            <label for="monto-prestamo">Monto del Préstamo:</label>
+            <input type="number" id="monto-prestamo" required>
+            
+            <label for="tasa-interes">Tasa de Interés Anual (%):</label>
+            <input type="number" id="tasa-interes" step="0.01" required>
+            
+            <label for="plazo-prestamo">Plazo en Meses:</label>
+            <input type="number" id="plazo-prestamo" required>
+            
+            <button type="submit">Calcular Cuota</button>
+        </form>
+        
+        <div id="results">
+            <p>Cuota Mensual: <span id="cuota-mensual"></span></p>
+        </div>
+        
+        <div id="tabla-desglose-pagos">
+            <h2>Desglose de Pagos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mes</th>
+                        <th>Pago Principal</th>
+                        <th>Pago de Interés</th>
+                        <th>Saldo Restante</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-desglose-pagos">
+                    <!-- Los datos de desglose de pagos se llenarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="./JAVASCRIPT/script.js"></script>
+</body>
+</html>
