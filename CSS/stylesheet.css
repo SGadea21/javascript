@@ -95,3 +95,13 @@ table th {
 table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
+
+
+
+/* Estilos para el mensaje de promoción */
+h2 {
+    color: #007bff;
+    font-size: 18px;
+    margin-top: 20px;
+}
