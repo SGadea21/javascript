@@ -6,34 +6,24 @@ const plazoPrestamo = document.getElementById('plazo-prestamo');
 const cuotaMensual = document.getElementById('cuota-mensual');
 const tablaDesglosePagos = document.getElementById('tabla-desglose-pagos');
 
-// Usuarios válidos
-const usuariosValidos = {
-    sofia: "1234",
-    prueba: "prueba",
-};
+// Recuperar la variable de localStorage
+var Usuario = localStorage.getItem('Usuario');
 
-// Función para realizar el inicio de sesión
-function iniciarSesion() {
-    // Obtener el nombre de usuario y contraseña mediante prompts
-    const usuarioIngresado = prompt("Ingrese su nombre de usuario:");
-    const contraseñaIngresada = prompt("Ingrese su contraseña:");
-
-    // Verificar si el nombre de usuario y contraseña son válidos
-    if (usuariosValidos.hasOwnProperty(usuarioIngresado) && usuariosValidos[usuarioIngresado] === contraseñaIngresada) {
-        alert("¡Inicio de sesión exitoso!");
-        return true; // Devuelve true si el inicio de sesión es exitoso
-    } else {
-        return "Usuario no habilitado"; // Devuelve un mensaje de error si el inicio de sesión falla
-    }
+// Verificar si la variable existe y no es nula
+if (Usuario) {
+    // Actualizar el contenido del span "user-name"
+    var userSpan = document.getElementById('user-name');
+    userSpan.textContent = Usuario;
+    
+    // Mostrar el elemento "user-section" que estaba oculto
+    var userSection = document.getElementById('user-section');
+    userSection.classList.remove('hidden');
+    
+    // Ocultar el enlace "Iniciar Sesión"
+    var loginLink = document.getElementById('login-link');
+    loginLink.style.display = 'none';
 }
 
-// Llamar a la función de inicio de sesión al principio
-const resultadoInicioSesion = iniciarSesion();
-
-// Verificar el resultado del inicio de sesión
-if (resultadoInicioSesion === true) {
-    // El inicio de sesión es exitoso, permitir al usuario continuar con el flujo del programa
-    // Función para calcular la cuota mensual
     function calcularCuotaMensual(principal, tasa, plazo) {
         tasa = tasa / 100 / 12;
         const cuotaMensualValor = (principal * tasa) / (1 - Math.pow(1 + tasa, -plazo));
@@ -114,7 +104,3 @@ if (resultadoInicioSesion === true) {
     // Escuchar el evento submit del formulario
     formularioPrestamo.addEventListener('submit', manejarEnvioFormulario);
 
-} else {
-    // El inicio de sesión no fue exitoso, mostrar un mensaje de error
-    alert(resultadoInicioSesion);
-}

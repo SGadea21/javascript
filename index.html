@@ -3,53 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Préstamos Personales</title>
+    <title>Banco Monopoly</title>
     <link rel="stylesheet" href="./CSS/stylesheet.css">
 </head>
 <body>
     <header>
-      
-        <h1>Simulador de Préstamos Personales</h1>
-        <img src="./MULTIMEDIA/img/logo.png" alt="logo"> 
+        <nav>
+            <ul>
+                <img src="./MULTIMEDIA/img/logo.png" alt="logo">
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="#acerca">Acerca de Nosotros</a></li>
+                <li><a href="./PAGES/simuladordeprestamo.html">Simulador de Prestamo</a></li>
+                <li><a href="./PAGES/login.html">Iniciar Sesión</a></li>
+                <li id="user-section" class="hidden">
+                    <span>Bienvenido, <span id="user-name">Usuario</span></span>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <h2>¡Solicita $100,000 o más y obtén un 10% de descuento en las cuotas!</h2>
-        
-        <form id="formulario-prestamo">
-            <label for="monto-prestamo">Monto del Préstamo:</label>
-            <input type="number" id="monto-prestamo" required>
-            
-            <label for="tasa-interes">Tasa de Interés Anual (%):</label>
-            <input type="number" id="tasa-interes" step="0.01" required>
-            
-            <label for="plazo-prestamo">Plazo en Meses:</label>
-            <input type="number" id="plazo-prestamo" required>
-            
-            <button type="submit">Calcular Cuota</button>
-        </form>
-        
-        <div id="results">
-            <p>Cuota Mensual: <span id="cuota-mensual"></span></p>
-        </div>
-        
-        <div id="tabla-desglose-pagos">
-            <h2>Desglose de Pagos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mes</th>
-                        <th>Pago Principal</th>
-                        <th>Pago de Interés</th>
-                        <th>Saldo Restante</th>
-                    </tr>
-                </thead>
-                <tbody id="cuerpo-tabla-desglose-pagos">
-                    
-                </tbody>
-            </table>
-        </div>
-    </main>
 
-    <script src="./JAVASCRIPT/script.js"></script>
+    <section id="inicio">
+        <h1>Bienvenido al Banco Monopoly</h1>
+        <p>Somos su banco de confianza para todas sus necesidades financieras. En Banco Monopoly, trabajamos para ofrecerle los mejores servicios financieros y asesoramiento profesional.</p>
+    </section>
+
+    <section id="acerca">
+        <h2>Acerca de Nosotros</h2>
+        <p>
+            
+            En el corazón de la icónica Ciudad de Monopoly, el Banco Monopoly se alza como una institución financiera de renombre mundial que combina la tradición con la innovación. 
+            Nuestra historia se remonta a décadas atrás, cuando los primeros billetes de juego comenzaron a circular en el Monopoly original. <br/>
+            Desde entonces, hemos crecido y evolucionado para satisfacer las cambiantes necesidades financieras de nuestros clientes en esta ciudad llena de emoción y oportunidades.
+            
+            En el Banco Monopoly, nos enorgullecemos de nuestra dedicación a brindar servicios de primera clase y soluciones financieras a medida para individuos, familias y empresas. 
+            Nuestra visión es simple pero ambiciosa: ser el socio financiero de confianza de cada residente de la Ciudad del Monopoly.
+
+            </p>
+            <h2> Valores Fundamentales:</h2>
+            <ul>
+                <li><h3> Integridad:</h3> Operamos con los más altos estándares éticos, garantizando la transparencia y la honestidad en cada transacción financiera.</li>
+                <li><h3>Innovación:</h3> Abrazamos la tecnología y la innovación para ofrecer soluciones financieras modernas y convenientes.</li>
+                <li><h3>Compromiso:</h3> Estamos comprometidos con el éxito financiero de nuestros clientes, brindando un servicio personalizado y atención a sus metas y necesidades únicas.</li>
+                <li><h3>Comunidad:</h3>Nos enorgullece ser parte activa de la comunidad de la Ciudad del Juego y contribuir al crecimiento y bienestar de esta ciudad vibrante.
+            
+            En el Banco Monopoly, creemos que todos merecen la oportunidad de avanzar en sus vidas financieras. Ya sea que esté buscando financiamiento para su próximo proyecto, asesoramiento en inversiones o servicios bancarios diarios, estamos aquí para ayudarlo a alcanzar sus objetivos.
+            
+            Gracias por confiar en el Banco Monopoly como su socio financiero. Esperamos poder ser parte de su éxito financiero en esta emocionante ciudad que nunca duerme.</li>
+            </ul>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Banco Monopoly. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../JAVASCRIPT/script.js"></script>
 </body>
 </html>
