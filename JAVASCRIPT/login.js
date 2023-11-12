@@ -1,27 +1,47 @@
-// Recuperar la variable de localStorage
-var Usuario = localStorage.getItem('Usuario');
-
-// Verificar si la variable existe y no es nula
-if (Usuario) {
-    // Actualizar el contenido del span "user-name"
-    var userSpan = document.getElementById('user-name');
-    userSpan.textContent = Usuario;
-    
-    // Mostrar el elemento "user-section" que estaba oculto
-    var userSection = document.getElementById('user-section');
-    userSection.classList.remove('hidden');
-    
-    // Ocultar el enlace "Iniciar Sesión"
-    var loginLink = document.getElementById('login-link');
-    loginLink.style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
     const loginOptionButton = document.getElementById('login-option');
     const registerOptionButton = document.getElementById('register-option');
+    const logoutform = document.getElementById('logout-form');
+    const logoutButton = document.getElementById('logout-button');
 
+// Recuperar la variable de localStorage
+let Usuario = localStorage.getItem('Usuario');
+ // Ocultar por defecto el botón de cerrar sesión
+ logoutform.classList.add('hidden');
+// Verificar si la variable existe y no es nula
+if (Usuario) {
+    
+    // Actualizar el contenido del span "user-name"
+    let userSpan = document.getElementById('user-name');
+    userSpan.textContent = Usuario;
+    
+    // Mostrar el elemento "user-section" que estaba oculto
+    let userSection = document.getElementById('user-section');
+    userSection.classList.remove('hidden');
+    loginForm.classList.add('hidden');
+    registerForm.classList.add('hidden');
+
+        // Mostrar el botón de Cerrar Sesión
+        logoutform.classList.remove('hidden');
+
+        // Agregar evento para cerrar sesión al hacer clic en el botón
+        logoutButton.addEventListener('click', () => {
+            // Eliminar el usuario almacenado
+            localStorage.removeItem('Usuario');
+
+            // Ocultar el botón de Cerrar Sesión
+            logoutform.classList.add('hidden');
+
+            // Redirigir al usuario a la página de inicio de sesión o a donde desees
+            window.location.href = '../PAGES/login.html';
+        });
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+   
     loginOptionButton.addEventListener('click', () => {
         loginForm.classList.remove('hidden');
         registerForm.classList.add('hidden');
@@ -57,10 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const user = users.find((u) => u.username === username && u.password === password);
         if (user) {
-            alert('Inicio de sesión exitoso');
+            Swal.fire({
+                icon: "success",
+                title: "Inicio de sesión exitoso",
+                
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redireccionar
+                  window.location.href = '../index.html';
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // El usuario canceló, manejarlo si es necesario
+                }
+              });
+              
             localStorage.setItem('Usuario', username);
+           
         } else {
-            alert('Credenciales incorrectas');
+           
+            Swal.fire({
+              icon: "error",
+              title: "Error al iniciar secion",
+              text: "Credenciales incorrectas",
+            });
         }
     });
 
@@ -73,10 +111,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!users.some((u) => u.username === newUsername)) {
             users.push({ username: newUsername, password: newPassword });
             localStorage.setItem('users', JSON.stringify(users));
-            alert('Registro exitoso');
+
+            Swal.fire({
+                icon: "success",
+                title: "Registro exitoso",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redireccionar
+                  window.location.href = '../PAGES/login.html';
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // El usuario canceló, manejarlo si es necesario
+                }
+              });
             
         } else {
-            alert('El usuario ya existe');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El usuario ya existe",
+              });
+
         }
     });
 

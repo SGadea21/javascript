@@ -17,7 +17,6 @@
                 <li id="user-section" class="hidden">
                     <span>Bienvenido, <span id="user-name">Usuario</span></span>
                 </li>
-                <li><a href="#login" id="login-link">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -38,8 +37,15 @@
                 </div>
                 
             <div id="login-options">
-                <button type="submit">Iniciar Sesión</button>
+                <button  type="submit">Iniciar Sesión</button>
                 <button id="register-option">Registrarse</button>
+            </div>
+            </form> 
+            <form id="logout-form">
+                <h2>Cerrar Sesión</h2>
+                
+            <div id="logout-options">
+                <button id="logout-button">Cerrar Sesión</button>
             </div>
             </form> 
 
@@ -73,5 +79,6 @@
     </main>
 
     <script src="../JAVASCRIPT/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

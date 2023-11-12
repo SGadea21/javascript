@@ -37,7 +37,9 @@
                 <input type="number" id="tasa-interes" step="0.01" required>
                 
                 <label for="plazo-prestamo">Plazo en Meses:</label>
-                <input type="number" id="plazo-prestamo" required>
+                <select id="plazo-prestamo" required>
+                    <!-- Las opciones se cargarán dinámicamente desde la API -->
+                </select>
                 
                 <button type="submit">Calcular Cuota</button>
             </form>
@@ -66,5 +68,6 @@
     </main>
 
     <script src="../JAVASCRIPT/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

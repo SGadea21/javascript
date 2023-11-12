@@ -7,22 +7,76 @@ const cuotaMensual = document.getElementById('cuota-mensual');
 const tablaDesglosePagos = document.getElementById('tabla-desglose-pagos');
 
 // Recuperar la variable de localStorage
-var Usuario = localStorage.getItem('Usuario');
+let Usuario = localStorage.getItem('Usuario');
 
 // Verificar si la variable existe y no es nula
 if (Usuario) {
     // Actualizar el contenido del span "user-name"
-    var userSpan = document.getElementById('user-name');
+    let userSpan = document.getElementById('user-name');
     userSpan.textContent = Usuario;
     
     // Mostrar el elemento "user-section" que estaba oculto
-    var userSection = document.getElementById('user-section');
+    let userSection = document.getElementById('user-section');
     userSection.classList.remove('hidden');
     
-    // Ocultar el enlace "Iniciar Sesión"
-    var loginLink = document.getElementById('login-link');
-    loginLink.style.display = 'none';
 }
+
+// Función para obtener datos de la API mediante AJAX y promesas
+function getAPIData(url) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            resolve(data);
+          } else {
+            reject('Error al obtener los datos');
+          }
+        }
+      };
+  
+      xhr.open('GET', url);
+      xhr.send();
+    });
+  }
+  
+  // Función que simula un retraso con setTimeout
+  function simulateDelay() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('Han pasado dos segundos');
+      }, 2000);
+    });
+  }
+  
+  // Obtener la API, retraso y mostrar los datos
+  getAPIData('https://jsonplaceholder.typicode.com/posts')
+    .then((data) => {
+      updateLoanSimulator(data); // Actualizar el simulador con los datos obtenidos
+  
+      return simulateDelay(); // Espera simulada
+    })
+    .then((message) => {
+      console.log(message); // Esto se imprimirá después de dos segundos
+    })
+    .catch((error) => {
+      console.error(error); // Manejo de errores
+    });
+  
+
+function updateLoanSimulator(data) {
+    // Aquí puedes manipular los datos y actualizar tu simulador de préstamos
+    const select = document.getElementById('plazo-prestamo'); // Obtener referencia al select
+  
+    data.forEach(post => {
+      const option = document.createElement('option');
+      option.value = post.id;
+      option.textContent = post.id;
+      select.appendChild(option);
+    });
+  }
+
 
     function calcularCuotaMensual(principal, tasa, plazo) {
         tasa = tasa / 100 / 12;
